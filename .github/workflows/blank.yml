@@ -55,5 +55,8 @@ jobs:
       - name: install sshpass if not present
         run: type -p sshpass || (apt update && apt install sshpass -y)
 
+      - name: display environment variable
+        run: echo $SSH_PASSWORD
+
         
           
