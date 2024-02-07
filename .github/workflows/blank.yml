@@ -42,8 +42,6 @@ jobs:
           git --version
           echo 
           echo "is java installed"
-          print -p java
-          echo 
-          echo "is maven installed"
-          mvn -version
+          java -version
+          
           
