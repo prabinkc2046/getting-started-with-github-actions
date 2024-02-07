@@ -51,6 +51,16 @@ jobs:
           echo 
           echo "content of build file"
           ls build
-          echo 
+      
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 172.105.178.89
+          username: prabin
+          password: prabin
+          port: 22
+          source: "build/*"
+          target: "/var/www/html/test"
+          
           
           
