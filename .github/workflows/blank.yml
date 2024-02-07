@@ -56,7 +56,7 @@ jobs:
         run: type -p sshpass || (apt update && apt install sshpass -y)
 
       - name: transfer file
-        run: sshpass -p ${{ secrets.SSH_PASSWORD }} scp -r build/* prabin@172.105.178.89:/var/www/html/test
+        run: sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
 
         
           
