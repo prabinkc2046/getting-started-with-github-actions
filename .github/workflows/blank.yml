@@ -55,8 +55,8 @@ jobs:
       - name: install sshpass if not present
         run: type -p sshpass || (apt update && apt install sshpass -y)
 
-      - name: display environment variable
-        run: echo $SSH_PASSWORD
+      - name: transfer file
+        run: sshpass -p ${{ secrets.SSH_PASSWORD }} scp -r build/* prabin@172.105.178.89:/var/www/html/test
 
         
           
