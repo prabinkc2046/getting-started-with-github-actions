@@ -25,23 +25,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # List the content of the current directory
+      - name: list the contnet of the current directory
+        run: ls 
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo "The architecture of this machine is"
-          dpkg --print-architecture
-          echo 
-          echo "what's in the current directory"
-          ls 
-          echo 
-          echo "is git installed"
-          git --version
-          echo 
-          echo "is java installed"
-          java -version
+      # - name: Run a multi-line script
+      #   run: |
+      #     echo "The architecture of this machine is"
+      #     dpkg --print-architecture
+      #     echo 
+      #     echo "what's in the current directory"
+      #     ls 
+      #     echo 
+      #     echo "is git installed"
+      #     git --version
+      #     echo 
+      #     echo "is java installed"
+      #     java -version
           
           
