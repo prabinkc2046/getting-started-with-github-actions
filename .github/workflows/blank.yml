@@ -62,7 +62,6 @@ jobs:
           username: prabin
           password: prabin
           port: 22
-          rm: true
           source: "githubactions/build/*"
           target: "/var/www/html/test"
         
