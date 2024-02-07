@@ -51,7 +51,7 @@ jobs:
           ls build
           echo
           echo "The real path of build folder is"
-          realpath build
+          path=$(realpath build)
       
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
@@ -60,6 +60,6 @@ jobs:
           username: prabin
           password: prabin
           port: 22
-          source: ""
+          source: "$path/*"
           target: "/var/www/html/test"
           
