@@ -35,7 +35,7 @@ jobs:
           echo "changing into the githubaction directory"
           cd githubactions
           echo 
-          echo "The content of current directory:"
+          echo "The content of current directory is:"
           ls -a
           echo 
           echo "Installing dependencies"
