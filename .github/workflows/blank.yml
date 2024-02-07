@@ -51,12 +51,15 @@ jobs:
           ls build
           echo
           echo "The real path of build folder is"
-          ls       
-      - name: install sshpass if not present
-        run: type -p sshpass || (apt update && apt install sshpass -y)
+          ls
+          echo "Transferring file now"
+          sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
+    
+      # - name: install sshpass if not present
+      #   run: type -p sshpass || (apt update && apt install sshpass -y)
 
-      - name: transfer file
-        run: sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
+      # - name: transfer file
+      #   run: sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
 
         
           
