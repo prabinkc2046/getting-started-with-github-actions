@@ -39,7 +39,7 @@ jobs:
           ls 
           echo 
           echo "is git installed"
-          print -p git
+          git --version
           echo 
           echo "is java installed"
           print -p java
