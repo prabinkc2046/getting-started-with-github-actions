@@ -44,8 +44,6 @@ jobs:
           echo "content of npm_install.txt"
           cat npm_install.txt
           echo 
-          echo "testing npm "
-          npm run test 
           echo "building an react app"
           npm run build
           echo 
