@@ -62,6 +62,7 @@ jobs:
           username: prabin
           password: prabin
           port: 22
+          strip_components: 2
           source: "githubactions/build/*"
           target: "/var/www/html/test"
       
