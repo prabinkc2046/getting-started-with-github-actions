@@ -15,7 +15,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn DevOps from Prabin
+          Learn DevOps from Prabin 
+          <h1>Hello from github actions</h1>
         </a>
       </header>
     </div>
