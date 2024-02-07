@@ -52,14 +52,17 @@ jobs:
           echo
           echo "The real path of build folder is"
           ls
-          echo "Transferring file now"
-          sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
+          # echo "Transferring file now"
+          # sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
     
-      - name: where am I now
-        run: ls 
-
-      # - name: transfer file
-      #   run: sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
-
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 172.105.178.89
+          username: prabin
+          password: prabin
+          port: 22
+          source: "githubactions/build/*"
+          target: "/var/www/html/test"
         
           
