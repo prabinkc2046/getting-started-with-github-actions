@@ -38,6 +38,10 @@ jobs:
           echo "The content of current directory:"
           ls -a
           echo 
-          
+          echo "Installing dependencies"
+          npm install >> npm_install.txt
+          echo 
+          echo "content of npm_install.txt"
+          cat npm_install.txt
           
           
