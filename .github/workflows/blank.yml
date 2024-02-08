@@ -17,9 +17,11 @@ jobs:
   check_mail_command:
     runs-on: ubuntu-latest
     steps:
-      
-      - name: run a bash shell script
-        run: sh ./github-actions-script.sh
+      - name: checkout
+        uses: actions/checkout@v4
 
+      - name: list current directory
+        run: ls
+        
 
   
