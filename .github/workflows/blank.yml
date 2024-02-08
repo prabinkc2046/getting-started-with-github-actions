@@ -42,6 +42,6 @@ jobs:
           echo "Email was sent"
           fi
       - name: run a bash shell script
-        run: sh ./github-actions-script.sh
+        run: sh ../../github-actions-script.sh
 
   
