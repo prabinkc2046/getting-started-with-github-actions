@@ -26,9 +26,8 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: sh ./github-actions-script.sh
+      - name: Install dependencies
+        run: npm ci
         
 
   
