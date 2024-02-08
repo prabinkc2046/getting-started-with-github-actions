@@ -13,73 +13,33 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  check_mail_command:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # List the content of the current directory
-      - name: list the contnet of the current directory
-        run: ls 
-
-      # Change directory into the githubaction directory and perform npm run test
-      - name: Run a multi-line script
+      - name: check if mail is installed and set environment variables
         run: |
-          echo "changing into the githubaction directory"
-          cd githubactions
-          echo 
-          echo "The content of current directory is:"
-          ls -a
-          echo 
-          echo "Installing dependencies"
-          npm install >> npm_install.txt
-          echo 
-          echo "content of npm_install.txt"
-          cat npm_install.txt
-          echo 
-          echo "building an react app"
-          npm run build
-          echo 
-          echo "content of build file"
-          ls build
-          echo
-          echo "The real path of build folder is"
-          ls
-          # echo "Transferring file now"
-          # sshpass -p ${{ secrets.SSH_PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
-    
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: 172.105.178.89
-          username: prabin
-          password: prabin
-          port: 22
-          strip_components: 2
-          source: "githubactions/build/*"
-          target: "/var/www/html/test"
-      - name: change env variable CI to false
-        run: |
-          echo "CI=$CI before changing"
-          export CI=false
-          echo "CI=$CI after changing"
-
-      - name: list of env variables at disposal
-        run: |
-          echo "list of env variables"
-          env
-
-      - name: notify
-        run: |
-          echo "check is successful" | mail -s "notification" prabin.devops.demo@gmail.com
-      
-      
-        
+          DEBIAN_FRONTEND=noninteractive
+          if command -v mail >> /dev/null; then
+          export install_mail=false
+          else
+          export install_mail=true
+          fi
           
+          
+          # if env is set to true
+          # install mail utils
+          if [ "$install_mail" = true ]; then
+          echo "mail is not installed, so installing it now"
+          sudo apt update -y
+          sudo apt install mailutils -y
+          fi
+          
+          # send email using mail utility
+          echo "hello world" | mail -s "hello world" prabin.devops.demo@gmail.com
+          
+          if [ $? == 0 ]; then
+          echo "Email was sent"
+          fi
+
+  
