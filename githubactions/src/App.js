@@ -16,7 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn DevOps from Prabin 
-          <h1>Version 12323232321</h1>
+          <h1>Version 1</h1>
         </a>
       </header>
     </div>
