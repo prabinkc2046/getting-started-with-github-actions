@@ -33,7 +33,10 @@ jobs:
       - name: Execute Deployment Script
         run: sh ./build.sh
           
-
+      # Step4: where am i now
+      - name: list of wheere am i now
+        run: ls
+        
       # Transfer build files to the production server
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
