@@ -48,7 +48,7 @@ jobs:
           else
             echo "sshpass is not found, installing"
             apt update -y && apt install sshpass -y
-            sshpass -p prabin scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
+            sshpass -p {{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
             echo "build is transferred to production server"  
           fi
           
