@@ -1,8 +1,9 @@
-echo "the current working dir is"
-pwd
+echo "CD into githubactions"
 echo
-echo "the content of the current working dir is"
-ls
-echo 
-echo "git version is"
-git --version
+echo "Installing dependencies"
+npm install
+echo "Building ..."
+npm run build
+echo
+echo "Content of the build file"
+ls build
