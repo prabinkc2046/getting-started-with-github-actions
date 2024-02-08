@@ -1,8 +1,9 @@
 # This workflow automates the deployment of a React application to a production server using GitHub Actions.
+# It ensures efficient and reliable deployment processes while providing flexibility for manual triggering.
 
 name: React App Deployment
 
-# Triggers the workflow on push or pull request events, specifically for the "main" branch,
+# Triggers the workflow on push or pull request events targeting the "main" branch,
 # and allows manual triggering from the Actions tab.
 on:
   push:
@@ -19,6 +20,7 @@ jobs:
       # Step 1: Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v4
+        # This step checks out the repository code into the runner environment.
 
       # Step 2: Cache Node Modules
       - name: Cache Node Modules
@@ -26,19 +28,22 @@ jobs:
         id: cache
         with:
           path: ./githubactions/node_modules
-          # Cache key is generated based on OS and hash of package-lock.json
+          # Cache key is generated based on the operating system and hash of package-lock.json
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      
+        # This step caches the 'node_modules' directory to speed up dependency installation between workflow runs.
+
       # Step 3: Execute Deployment Script
       - name: Execute Deployment Script
         run: sh ./build.sh
-          
-      # Step4: where am i now
-      - name: list of wheere am i now
+        # This step executes the deployment script 'build.sh' to build and deploy the React application.
+
+      # Step 4: List Current Directory
+      - name: List Current Directory
         run: ls
-        
-      # Transfer build files to the production server
-      - name: copy file via ssh password
+        # This step lists the contents of the current directory to provide visibility into the workspace.
+
+      # Step 5: Transfer Build Files to Production Server
+      - name: Copy Files via SSH Password
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_IP }}
@@ -48,3 +53,6 @@ jobs:
           strip_components: 3
           source: "./githubactions/build/*"
           target: /var/www/html/test
+        # This step copies the build files to the production server using SCP, ensuring secure and efficient deployment.
+
+      
