@@ -33,10 +33,11 @@ jobs:
           echo
           echo CD into githubactions
           cd githubactions
-          echo "Content of current dir"
+          echo 
+          echo "INSTALLING DEPENDENCIES....."
           npm install 
           echo
-          echo "building ..."
+          echo "BUILDING REACT APP...."
           npm run build
           echo
           echo "transferring build file to proudction server"
