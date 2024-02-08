@@ -19,10 +19,7 @@ jobs:
     steps:
       
       - name: run a bash shell script
-        run: |
-          echo content
-          ls
-          echo 
+        run: sh ./github-actions-script.sh
 
 
   
