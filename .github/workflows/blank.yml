@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v4
         id: cache
         with:
-          path: node_modules
+          path: ./githubactions/package-lock.json
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: multi line bash command
         run: |
@@ -34,7 +34,7 @@ jobs:
           echo CD into githubactions
           cd githubactions
           echo "Content of current dir"
-          ls
+          npm install 
           
         
         
