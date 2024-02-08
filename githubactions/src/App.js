@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn DevOps from Prabin 
+          This is github action in action
           <h1>Version 1</h1>
         </a>
       </header>
