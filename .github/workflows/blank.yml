@@ -26,8 +26,11 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
+      - name: CD into githubactions
+        run: cd githubactions
+      - name: install dependencies
         run: npm ci
+        
         
 
   
