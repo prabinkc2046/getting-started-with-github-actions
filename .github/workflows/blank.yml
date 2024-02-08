@@ -31,40 +31,17 @@ jobs:
       
       # Step 3: Execute Deployment Script
       - name: Execute Deployment Script
-        run: |
-          # Print the contents of the current directory
-          echo "Contents of the current directory:"
-          ls
-          echo
+        run: sh ./build.sh
+          
 
-          # Change directory to 'githubactions'
-          echo "Changing directory to githubactions..."
-          cd githubactions
-          echo 
-
-          # Install dependencies using npm
-          echo "Installing dependencies..."
-          npm install 
-          echo
-
-          # Build the React app
-          echo "Building React app..."
-          npm run build
-          echo
-
-          # content of current dir
-          echo "Conten of current dir"
-          ls 
-          echo
-
-          # # Transfer build files to the production server
-          # - name: copy file via ssh password
-          #   uses: appleboy/scp-action@v0.1.7
-          #   with:
-          #     host: ${{ secrets.SERVER_IP }}
-          #     username: ${{ secrets.USERNAME }}
-          #     password: ${{ secrets.PASSWORD }}
-          #     port: ${{ secrets.PORT }}
-          #     strip_components: 1
-          #     source: "build/*"
-          #     target: /var/www/html/test
+      # Transfer build files to the production server
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          strip_components: 1
+          source: "build/*"
+          target: /var/www/html/test
