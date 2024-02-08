@@ -19,7 +19,7 @@ jobs:
     steps:
       
       - name: run a bash shell script
-        run: find . -type file -name github-actions-script.sh
+        run: find . -name "github-actions-script.sh"
 
 
   
