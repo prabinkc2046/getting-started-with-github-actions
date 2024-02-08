@@ -1,4 +1,4 @@
 echo "CD into githubactions"
-echo
+cd githubactions
 echo "content of current work directory"
 ls 
