@@ -31,6 +31,10 @@ jobs:
           echo "content of current dir"
           ls
           echo
+          echo CD into githubactions
+          cd githubactions
+          echo "Content of current dir"
+          ls
           
         
         
