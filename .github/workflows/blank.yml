@@ -26,10 +26,12 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      - name: CD into githubactions
-        run: cd githubactions
-      - name: install dependencies
-        run: npm install
+      - name: multi line bash command
+        run: |
+          echo "content of current dir"
+          ls
+          echo
+          
         
         
 
