@@ -17,31 +17,9 @@ jobs:
   check_mail_command:
     runs-on: ubuntu-latest
     steps:
-      - name: check if mail is installed and set environment variables
-        run: |
-          DEBIAN_FRONTEND=noninteractive
-          if command -v mail >> /dev/null; then
-          export install_mail=false
-          else
-          export install_mail=true
-          fi
-          
-          
-          # if env is set to true
-          # install mail utils
-          if [ "$install_mail" = true ]; then
-          echo "mail is not installed, so installing it now"
-          sudo apt update -y
-          sudo apt install mailutils -y
-          fi
-          
-          # send email using mail utility
-          echo "hello world" | mail -s "hello world" prabin.devops.demo@gmail.com
-          
-          if [ $? -eq 0 ]; then
-          echo "Email was sent"
-          fi
+      
       - name: run a bash shell script
-        run: sh ../../github-actions-script.sh
+        run: find . -type file -name github-actions-script.sh
+
 
   
