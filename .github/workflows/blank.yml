@@ -45,6 +45,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          strip_components: 1
-          source: "build/*"
+          strip_components: 3
+          source: "./githubactions/build/*"
           target: /var/www/html/test
