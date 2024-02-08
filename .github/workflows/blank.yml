@@ -38,7 +38,7 @@ jobs:
           # send email using mail utility
           echo "hello world" | mail -s "hello world" prabin.devops.demo@gmail.com
           
-          if [ $? == 0 ]; then
+          if [ $? -eq 0 ]; then
           echo "Email was sent"
           fi
 
