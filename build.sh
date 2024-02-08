@@ -18,3 +18,7 @@ echo "Building React app..."
 npm run build
 echo
 
+# Content of current dir
+echo "Content of current dir"
+ls
+echo 
