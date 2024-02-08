@@ -1,58 +1,68 @@
-# This is a basic workflow to help you get started with Actions
+# This workflow automates the deployment of a React application to a production server using GitHub Actions.
 
-name: playing with github actions and what it can do
+name: React App Deployment
 
-# Controls when the workflow will run
+# Triggers the workflow on push or pull request events, specifically for the "main" branch,
+# and allows manual triggering from the Actions tab.
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  check_mail_command:
+  deploy_react_app:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
+      # Step 1: Checkout Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: use cache
+      # Step 2: Cache Node Modules
+      - name: Cache Node Modules
         uses: actions/cache@v4
         id: cache
         with:
           path: ./githubactions/node_modules
+          # Cache key is generated based on OS and hash of package-lock.json
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      - name: multi line bash command
+      
+      # Step 3: Execute Deployment Script
+      - name: Execute Deployment Script
         run: |
-          echo "content of current dir"
+          # Print the contents of the current directory
+          echo "Contents of the current directory:"
           ls
           echo
-          echo CD into githubactions
+
+          # Change directory to 'githubactions'
+          echo "Changing directory to githubactions..."
           cd githubactions
           echo 
-          echo "INSTALLING DEPENDENCIES....."
+
+          # Install dependencies using npm
+          echo "Installing dependencies..."
           npm install 
           echo
-          echo "BUILDING REACT APP...."
+
+          # Build the React app
+          echo "Building React app..."
           npm run build
           echo
-          echo "transferring build file to proudction server"
-          echo "check if sshpass is present"
-          if command -v sshpass >> /dev/null; then
-            sshpass -p prabin scp -o StrictHostKeyChecking=no -r build/* prabin@172.105.178.89:/var/www/html/test
-            echo "build is transferred to production server"
-          else
-            echo "sshpass is not found, installing"
-            apt update -y && apt install sshpass -y
-            sshpass -p {{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* {{ secrets.USERNAME }}@{{ secrets.SERVER_IP }}:/var/www/html/test
-            echo "build is transferred to production server"  
-          fi
-          
-        
-        
 
-  
+          # Transfer build files to the production server
+          echo "Transferring build files to the production server..."
+          echo "Checking if sshpass is present..."
+          if command -v sshpass >> /dev/null; then
+            # If sshpass is present, transfer files using SCP
+            sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/html/test
+            echo "Build transferred to the production server."
+          else
+            # If sshpass is not found, install it and then transfer files using SCP
+            echo "sshpass is not found, installing..."
+            sudo apt update -y && sudo apt install sshpass -y
+            sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no -r build/* ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/html/test
+            echo "Build transferred to the production server."  
+          fi
