@@ -1,4 +1,8 @@
 echo "CD into githubactions"
 cd githubactions
-echo "content of current work directory"
-ls 
+echo Installing dependencies
+npm install
+echo building production grade react app
+npm run build
+echo Content of build folder
+ls build
