@@ -19,7 +19,10 @@ jobs:
     steps:
       
       - name: run a bash shell script
-        run: ls
+        run: |
+          echo content
+          ls
+          echo 
 
 
   
