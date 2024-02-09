@@ -27,6 +27,9 @@ jobs:
       - name: change directory into project folder
         run: cd githubactions
       
+      - name: content of current dir
+        run: ls 
+      
       - name: build project
         run: npm run build
 
