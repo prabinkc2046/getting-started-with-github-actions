@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: ./githubactions/package-lock.json
       - run: npm ci
   # Test if build is successful
   test:
@@ -37,7 +38,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      
+          cache-dependency-path: ./githubactions/package-lock.json  
       - run: npm test
   
       # Step 5: Transfer Build Files to Production Server
