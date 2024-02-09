@@ -18,17 +18,14 @@ jobs:
 
       - name: checkout source code
         uses: actions/checkout@v4
-      
-      - name: check the content of current directory
-        run: ls
-        
+  
       - name: set up node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
       
       - name: change directory into project folder
-        run: cd ./githubactions
+        run: cd githubactions
       
       - name: build project
         run: npm run build
@@ -45,7 +42,7 @@ jobs:
         with:
           node-version: 20
       - name: change directory into the project folder
-        run: cd ./githubactions
+        run: cd githubactions
       
       - name: Run test
         run: npm test
