@@ -20,7 +20,7 @@ jobs:
       - run: |
           cd githubactions
           npm install
-          npm run lint
+          npm run eslint
 
   # First job
   build:
