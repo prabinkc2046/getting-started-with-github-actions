@@ -16,7 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
           This is github action in action
-          <h1>Version 1</h1>
+          
         </a>
       </header>
     </div>
