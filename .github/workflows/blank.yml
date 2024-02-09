@@ -23,7 +23,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm run build
+      
+      - name: change directory into project folder
+        run: cd ./githubactions
+      
+      - name: build project
+        run: npm run build
+
   # Test if build is successful
   test:
     runs-on: ubuntu-latest
@@ -35,7 +41,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm test
+      - name: change directory into the project folder
+        run: cd ./githubactions
+      
+      - name: Run test
+        run: npm test
   
       # Step 5: Transfer Build Files to Production Server
       # - name: Copy Files via SSH Password
